@@ -51,3 +51,34 @@ database.raw("SELECT * FROM games").then(data => {
 }).catch(err => {
     console.log(err)
 })
+
+//para realizar um dele utilizamos a seguinte sintaxe
+database.where({id: 3}).delete().table("games").then(data => {
+    console.log(data);// Aqui ele mostra a quantidade de registros que ele deletou
+}).catch(err => {
+    console.log(err);
+});
+
+//para realizar update de dados utilizamos a sintaxe
+database.where({id: 5}).update({preco: 40}).table("games").then(data => { //na função update a gente passa os campos que queremos alterar, não é necessário passar o valor anterior
+    console.log(data);
+}).catch(err => {
+    console.log(err);
+});
+
+//ordenar tabela
+database.select().table("games").orderBy("preco","desc").then(data => {
+    console.log(data);
+}).catch(err => {
+    console.log(err);
+});
+
+//inserção associada
+database.insert({
+    nome: "Blizzard",
+    game_id: 5
+}).table("estudios").then(data => {
+    console.log(data);
+}).catch(err => {
+    console.log(err);
+});
